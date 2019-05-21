@@ -207,7 +207,7 @@ public class Cut extends JavaPlugin implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event)
     {
-//        Bukkit.broadcastMessage("OnBlockBreak");
+        Bukkit.broadcastMessage("OnBlockBreak");
         Block b = event.getBlock();
         stopDiggingSync(b);
     }
@@ -227,7 +227,7 @@ public class Cut extends JavaPlugin implements Listener {
                         startDigging(p, blockPos);
                         break;
                     default: {
-//                        Bukkit.broadcastMessage("Type : "+type.toString());
+                        Bukkit.broadcastMessage("Type : "+type.toString());
                         stopDigging(p, blockPos);
                         break;
                     }
@@ -241,24 +241,24 @@ public class Cut extends JavaPlugin implements Listener {
         blockBreakAnim = new PacketAdapter(this, ListenerPriority.NORMAL, PacketType.Play.Server.BLOCK_BREAK_ANIMATION) {
             @Override
             public void onPacketSending(PacketEvent event) {
-//                BlockPosition bp = event.getPacket().getBlockPositionModifier().read(0);
-//                Player p = event.getPlayer();
-//                Block b = p.getWorld().getBlockAt(bp.getX(), bp.getY(), bp.getZ());
-/*                if (placedBlocks.contains(b)) {
+                BlockPosition bp = event.getPacket().getBlockPositionModifier().read(0);
+                Player p = event.getPlayer();
+                Block b = p.getWorld().getBlockAt(bp.getX(), bp.getY(), bp.getZ());
+                if (placedBlocks.contains(b)) {
         
                     int tic = ticks.containsKey(b.getType()) ? ticks.get(b.getType()) : defaultBreakTime;
                     float h = (float) 10 * (hits.containsKey(b) ? (float) hits.get(b) : (float) defaultBreakTime) / (float) tic;
                     int HIT = (int) h;
                     if (hits.get(b) != null && hits.get(b) > 0)
                         event.getPacket().getIntegers().write(1, HIT);
-//                                event.getPacket().getIntegers().write(1, (int)(10*(b.getType()==Material.LADDER?((float) hits.get(b) / (float) ladder_ticks):((float) hits.get(b) / (float) planks_ticks))));
+                                event.getPacket().getIntegers().write(1, (int)(10*(b.getType()==Material.LADDER?((float) hits.get(b) / (float) ladder_ticks):((float) hits.get(b) / (float) planks_ticks))));
         
                     if (hits.get(b) == 0) {
                         event.getPacket().getIntegers().write(0, Integer.MAX_VALUE);
                         event.getPacket().getIntegers().write(1, 10);
                     }
                 }
-                */
+                
             }
         };
         
@@ -300,7 +300,7 @@ public class Cut extends JavaPlugin implements Listener {
                     else
                     {
                         int damageValue = (int) ((float) 10 * (float) HITS / (float) MAX_HITS);
-//                        Bukkit.broadcastMessage("Particle, damageValue : "+damageValue);
+                        Bukkit.broadcastMessage("Particle, damageValue : "+damageValue);
                         hits.put(b, HITS+1);
                         fakeBreak(b, damageValue);
                     }
@@ -312,7 +312,7 @@ public class Cut extends JavaPlugin implements Listener {
     
     private void breakBlock(Block b)
     {
-//        Bukkit.broadcastMessage("Remove block");
+        Bukkit.broadcastMessage("Remove block");
         fakeParticle(b);
         fakeBreak(b, 10);
         hits.remove(b);
@@ -378,7 +378,7 @@ public class Cut extends JavaPlugin implements Listener {
         stopDigging(new BlockPosition(l.getBlockX(), l.getBlockY(), l.getBlockZ()));
     }
     
-    /*
+    
     @EventHandler
     public void blockplace(BlockPlaceEvent event)
     {
@@ -386,5 +386,5 @@ public class Cut extends JavaPlugin implements Listener {
         if(ticks.containsKey(b.getType()))
             placed.add(b);
     }
-    */
+    
 }
